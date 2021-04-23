@@ -23,10 +23,11 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
+    "prepare": "yarn build",
     "build": "tsc",
     "test": "jest --coverage",
     "lint": "eslint ./src",
-    "pretest": "yarn run lint"
+    "pretest": "yarn lint"
   },
   "dependencies": {
     "react": "^17.0.1"
