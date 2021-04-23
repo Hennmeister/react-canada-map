@@ -43,7 +43,7 @@ class Canada extends Component<Props> {
     customize: {},
   }
 
-  fillProvinceColor = (province: string): string =>{
+  fillProvinceColor = (province: string): string => {
     if (
       this.props.customize &&
       this.props.customize[province] &&
@@ -80,7 +80,6 @@ class Canada extends Component<Props> {
           onClick={(e: MouseEvent) =>
             this.props.onClick(Provinces[province], e)
           }
-          svgLink={""}
         />
       )
       paths.push(path)
