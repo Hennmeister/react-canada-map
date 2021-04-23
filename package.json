@@ -2,7 +2,7 @@
   "name": "react-canada-map",
   "version": "1.0.0",
   "description": "react module for an interactive map of Canada",
-  "main": "index.js",
+  "main": "build/Canada.js",
   "repository": "https://github.com/Hennmeister/react-canada-map/",
   "author": "Hennmeister <henning.lindig@rogers.com>",
   "license": "MIT",

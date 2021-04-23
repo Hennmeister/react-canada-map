@@ -1,16 +1,36 @@
-import React, { Component } from "react"
+import React, { Component, MouseEvent } from "react"
 import data from "./data/data"
 import Province from "./Province"
 import drawDetails from "./svgUtils"
 
 interface Props {
-  onClick: (event: any) => void
+  onClick: (province: Provinces, event: MouseEvent) => void
   width: number
   height: number
-  title: string
-  defaultFill: string
-  customize: any
-  province: string
+  defaultFillColor: string
+  defaultHoverColor: string
+  customize: { [key in Provinces]: ProvinceCustomizations }
+}
+
+enum Provinces {
+  BC = "BC",
+  AB = "AB",
+  SK = "SK",
+  MB = "MB",
+  ON = "ON",
+  QC = "QC",
+  NB = "NB",
+  NS = "NS",
+  PE = "PE",
+  NL = "NL",
+  YT = "YT",
+  NT = "NT",
+  NU = "NU",
+}
+
+interface ProvinceCustomizations {
+  fillColor: string
+  onHoverColor: string
 }
 
 class Canada extends Component<Props> {
@@ -18,49 +38,49 @@ class Canada extends Component<Props> {
     onClick: () => {},
     width: 1113,
     height: 942,
-    defaultFill: "#D3D3D3",
-    title: "Canada",
+    defaultFillColor: "#D3D3D3",
+    onHoverColor: "#ffffff",
     customize: {},
-  }
-
-  clickHandler = (event: any) => {
-    this.props.onClick(event)
   }
 
   fillProvinceColor = (province: string) => {
     if (
       this.props.customize &&
       this.props.customize[province] &&
-      this.props.customize[province].fill
+      this.props.customize[province].fillColor
     ) {
-      return this.props.customize[province].fill
+      return this.props.customize[province].fillColor
     }
     // const defaultColour = "d3d3d3"
-    return this.props.defaultFill
+    return this.props.defaultFillColor
   }
 
-  provinceClickHandler = (province: string) => {
+  fillProvinceHoverColor = (province: string) => {
     if (
       this.props.customize &&
       this.props.customize[province] &&
-      this.props.customize[province].clickHandler
+      this.props.customize[province].onHoverColor
     ) {
-      return this.props.customize[province].clickHandler
+      return this.props.customize[province].onHoverColor
     }
-    return this.clickHandler
+    return this.props.defaultHoverColor
   }
 
   buildProvinces = () => {
     let paths = []
-    for (let province in data) {
+    let prov_data = data["default"]
+    for (let province in prov_data) {
       const path = (
         <Province
           key={province}
-          dimensions={data[province]["dimensions"]}
-          provinceAbbreviation={this.props.province}
-          provinceName={data[province]["name"]}
-          fill={this.fillProvinceColor(province)}
-          onClick={this.provinceClickHandler(province)}
+          dimensions={prov_data[province]["dimensions"]}
+          provinceAbbreviation={province}
+          provinceName={prov_data[province]["name"]}
+          fillColor={this.fillProvinceColor(province)}
+          onHoverColor={this.fillProvinceHoverColor(province)}
+          onClick={(e: MouseEvent) =>
+            this.props.onClick(Provinces[province], e)
+          }
           svgLink={""}
         />
       )
