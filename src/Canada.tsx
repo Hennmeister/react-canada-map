@@ -35,7 +35,7 @@ interface ProvinceCustomizations {
 
 class Canada extends Component<Props> {
   public static defaultProps = {
-    onClick: () => {},
+    onClick: (): void => {},
     width: 1113,
     height: 942,
     defaultFillColor: "#D3D3D3",
@@ -43,7 +43,7 @@ class Canada extends Component<Props> {
     customize: {},
   }
 
-  fillProvinceColor = (province: string) => {
+  fillProvinceColor = (province: string): string =>{
     if (
       this.props.customize &&
       this.props.customize[province] &&
@@ -51,11 +51,10 @@ class Canada extends Component<Props> {
     ) {
       return this.props.customize[province].fillColor
     }
-    // const defaultColour = "d3d3d3"
     return this.props.defaultFillColor
   }
 
-  fillProvinceHoverColor = (province: string) => {
+  fillProvinceHoverColor = (province: string): string => {
     if (
       this.props.customize &&
       this.props.customize[province] &&
@@ -67,9 +66,9 @@ class Canada extends Component<Props> {
   }
 
   buildProvinces = () => {
-    let paths = []
-    let prov_data = data["default"]
-    for (let province in prov_data) {
+    const paths = []
+    const prov_data = data["default"]
+    for (const province in prov_data) {
       const path = (
         <Province
           key={province}

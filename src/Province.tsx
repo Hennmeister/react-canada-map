@@ -1,17 +1,16 @@
-import React, { Component } from "react"
-import "./paths.css"
+import * as React from "react"
 
 interface Props {
   onClick: (e: React.MouseEvent) => void
   provinceName: string
   provinceAbbreviation: string
-  svgLink: string
+  svgLink?: string
   dimensions: string
   fillColor: string
   onHoverColor?: string
 }
 
-class Province extends Component<Props> {
+class Province extends React.Component<Props> {
   state = {
     isHovered: false,
   }
