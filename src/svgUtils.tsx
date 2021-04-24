@@ -1,5 +1,4 @@
 import React from "react"
-import "./paths.css"
 
 export default function drawDetails() {
   return (

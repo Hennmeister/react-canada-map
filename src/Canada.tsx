@@ -7,12 +7,12 @@ interface Props {
   onClick: (province: Provinces, event: MouseEvent) => void
   width: number
   height: number
-  defaultFillColor: string
-  defaultHoverColor: string
-  customize: { [key in Provinces]: ProvinceCustomizations }
+  fillColor: string
+  onHoverColor: string
+  customize: { [key in Provinces]?: ProvinceCustomizations }
 }
 
-enum Provinces {
+export enum Provinces {
   BC = "BC",
   AB = "AB",
   SK = "SK",
@@ -28,9 +28,9 @@ enum Provinces {
   NU = "NU",
 }
 
-interface ProvinceCustomizations {
-  fillColor: string
-  onHoverColor: string
+export interface ProvinceCustomizations {
+  fillColor?: string
+  onHoverColor?: string
 }
 
 class Canada extends Component<Props> {
@@ -38,7 +38,7 @@ class Canada extends Component<Props> {
     onClick: (): void => {},
     width: 1113,
     height: 942,
-    defaultFillColor: "#D3D3D3",
+    fillColor: "#D3D3D3",
     onHoverColor: "#ffffff",
     customize: {},
   }
@@ -51,7 +51,7 @@ class Canada extends Component<Props> {
     ) {
       return this.props.customize[province].fillColor
     }
-    return this.props.defaultFillColor
+    return this.props.fillColor
   }
 
   fillProvinceHoverColor = (province: string): string => {
@@ -62,7 +62,7 @@ class Canada extends Component<Props> {
     ) {
       return this.props.customize[province].onHoverColor
     }
-    return this.props.defaultHoverColor
+    return this.props.onHoverColor
   }
 
   buildProvinces = () => {
