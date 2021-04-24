@@ -1,6 +1,6 @@
 {
   "name": "react-canada-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react module for an interactive map of Canada",
   "main": "lib/Canada.js",
   "repository": "https://github.com/Hennmeister/react-canada-map/",
