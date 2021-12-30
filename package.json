@@ -31,5 +31,14 @@
   },
   "dependencies": {
     "react": "^17.0.1"
-  }
+  },
+  "keywords": [
+    "map",
+    "canada",
+    "react",
+    "svg",
+    "interactive",
+    "interactive canada map",
+    "provinces"
+  ]
 }
